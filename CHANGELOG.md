@@ -1,5 +1,10 @@
 # Orizaba - Laravel Components Change Log
 
+### August 23rd
+
+- Refactored functions.logOnLocal
+
+
 ### August 20th 
 
 - Added NavigateTraits
