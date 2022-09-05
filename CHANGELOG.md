@@ -2,6 +2,7 @@
 
 ### September 5th 
 
+- Fixed Service Provider issue
 - Added Controllers/BaseRestController
 - Added backed enum Support/Enums/HttpResponseCodesEnum
 - Added autoload-dev and require-dev sections to composer

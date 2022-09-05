@@ -33,7 +33,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Orizaba\\LaravelComponents\\ServiceProvider"
+                "Orizaba\\LaravelComponents\\OrizabaServiceProvider"
             ]
         }
     },
