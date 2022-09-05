@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 if ( ! function_exists('untrailingSlashit')) {
     function untrailingSlashIt(string $string)
     {
@@ -28,9 +30,9 @@ if ( ! function_exists('logOnLocal')) {
     function logOnLocal(string $message, array $data = [], ?\Illuminate\Console\Command $command = null)
     {
         if (isLocalEnvironment()) {
-            $backtrace         = null;
-            $titlePrefix       = ' ******* INFO: ' . PHP_EOL;
-            $backtraceLimit    = env('APP_DEBUG_BACKTRACE_LIMIT', 2);
+            $backtrace      = null;
+            $titlePrefix    = ' ******* INFO: ' . PHP_EOL;
+            $backtraceLimit = env('APP_DEBUG_BACKTRACE_LIMIT', 2);
 
             if ($backtraceLimit > 0) {
                 $backtrace = collect(debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, $backtraceLimit) ?? []);
@@ -38,11 +40,11 @@ if ( ! function_exists('logOnLocal')) {
                 foreach ($backtrace as $backtraceEntry) {
                     $titlePrefix .= '  >>>>>>> ';
 
-                    if( isset($backtraceEntry['file']) && isset($backtraceEntry['line']) ) {
-                        $titlePrefix .= $backtraceEntry['file'] .':'. $backtraceEntry['line'];
+                    if (isset($backtraceEntry['file']) && isset($backtraceEntry['line'])) {
+                        $titlePrefix .= $backtraceEntry['file'] . ':' . $backtraceEntry['line'];
                     }
 
-                    if( isset($backtraceEntry['function'])) {
+                    if (isset($backtraceEntry['function'])) {
                         $titlePrefix .= ' => ' . $backtraceEntry['function'] . PHP_EOL;
                     }
                 }

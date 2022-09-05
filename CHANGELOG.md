@@ -1,5 +1,13 @@
 # Orizaba - Laravel Components Change Log
 
+### September 5th 
+
+- Added Controllers/BaseRestController
+- Added backed enum Support/Enums/HttpResponseCodesEnum
+- Added autoload-dev and require-dev sections to composer
+- Added Support/helpers/laravel-polyfill
+
+
 ### August 23rd
 
 - Refactored functions.logOnLocal
