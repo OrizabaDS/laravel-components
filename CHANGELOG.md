@@ -1,5 +1,12 @@
 # Orizaba - Laravel Components Change Log
 
+### January 26th 
+
+- Created function getArraySubset
+
+
+## 2022
+
 ### September 5th 
 
 - Fixed Service Provider issue
