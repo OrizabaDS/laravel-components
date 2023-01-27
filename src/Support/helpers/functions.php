@@ -78,7 +78,7 @@ if ( ! function_exists('getArraySubset')) {
      */
     function getArraySubset(array $array, string|array $keys, string $format = "", bool $ignoreEmpty = true): array
     {
-        $parsedElements = array_map(function ($row) use ($keys) {
+        $parsedElements = array_map(function ($row) use ($keys, $format) {
 
             // If any of the keys is empty return null
             $values = [];
@@ -92,6 +92,7 @@ if ( ! function_exists('getArraySubset')) {
             return empty($format) ? ( is_array($keys) ? $values : $values[0] ) : vsprintf($format, $values);
         }, $array);
 
+        // Removes all nulls with array_filter
         return $ignoreEmpty ? array_filter($parsedElements) : $parsedElements;
     }
 }
