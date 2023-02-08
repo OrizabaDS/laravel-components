@@ -1,5 +1,11 @@
 # Orizaba - Laravel Components Change Log
 
+
+### February 8th 
+
+- Added functions readCsvToKeyPairArray and readCsvToCollection
+
+
 ### January 26th 
 
 - Created function getArraySubset

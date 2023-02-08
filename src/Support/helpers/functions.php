@@ -1,6 +1,8 @@
 <?php
 
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
+
 
 if ( ! function_exists('untrailingSlashit')) {
     function untrailingSlashIt(string $string)
@@ -82,17 +84,56 @@ if ( ! function_exists('getArraySubset')) {
 
             // If any of the keys is empty return null
             $values = [];
-            foreach (( is_array($keys) ? $keys : [$keys]) as $k){
-                if( empty($row[$k]) )
+            foreach ((is_array($keys) ? $keys : [$keys]) as $k) {
+                if (empty($row[$k])) {
                     return null;
+                }
 
                 $values[] = $row[$k];
             }
 
-            return empty($format) ? ( is_array($keys) ? $values : $values[0] ) : vsprintf($format, $values);
+            return empty($format) ? (is_array($keys) ? $values : $values[0]) : vsprintf($format, $values);
         }, $array);
 
         // Removes all nulls with array_filter
         return $ignoreEmpty ? array_filter($parsedElements) : $parsedElements;
+    }
+}
+
+
+if ( ! function_exists('readCsvToKeyPairArray')) {
+    /**
+     * @param $filePath
+     *
+     * @return array|null
+     */
+    function readCsvToKeyPairArray($filePath)
+    {
+        $data    = [];
+        // Open CSV File
+        if ( ! ($fp = fopen($filePath, 'r'))) {
+            return null;
+        }
+
+        $headers = fgetcsv($fp, "1024", ",");
+
+        while ($row = fgetcsv($fp, "1024", ",")) {
+            $data[] = array_combine($headers, $row);
+        }
+
+        // Close CSV File
+        fclose($fp);
+
+        return $data;
+    }
+}
+
+
+if ( ! function_exists('readCsvToCollection')) {
+    function readCsvToCollection($filePath)
+    {
+        $keyPairs = readCsvToKeyPairArray($filePath);
+
+        return isset($keyPairs) ? $keyPairs : new Collection($keyPairs);
     }
 }
