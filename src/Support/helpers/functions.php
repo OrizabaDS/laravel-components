@@ -116,9 +116,11 @@ if ( ! function_exists('readCsvToKeyPairArray')) {
         }
 
         $headers = fgetcsv($fp, "1024", ",");
+        $parsedHeaders = array_map(fn($v) => preg_replace('/[^A-Za-z0-9\-\_]/', '', \Illuminate\Support\Str::snake($v)) ,$headers);
 
         while ($row = fgetcsv($fp, "1024", ",")) {
-            $data[] = array_combine($headers, $row);
+            $parsedRow = array_map(fn($v) => is_numeric($v) ? floatval($v) : $v ,$row);
+            $data[] = array_combine($parsedHeaders, $parsedRow);
         }
 
         // Close CSV File

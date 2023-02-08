@@ -3,6 +3,7 @@
 
 ### February 8th 
 
+- Added regular expression validation to remove special characters from headers
 - Added functions readCsvToKeyPairArray and readCsvToCollection
 
 
