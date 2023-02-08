@@ -134,6 +134,6 @@ if ( ! function_exists('readCsvToCollection')) {
     {
         $keyPairs = readCsvToKeyPairArray($filePath);
 
-        return isset($keyPairs) ? $keyPairs : new Collection($keyPairs);
+        return isset($keyPairs) ? new Collection($keyPairs) : $keyPairs;
     }
 }
